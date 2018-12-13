@@ -1,0 +1,70 @@
+<form ngNativeValidate >
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+        <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date Of Birth</th>
+              <th>Department</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th></th>
+              <th></th>
+            </thead>
+      
+            <tbody>
+              <tr>
+                
+                <td>
+                  <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="employeeDetails.name" required placeholder="name" class="form-control required">
+                </td>
+                <td>
+                  <input  [ngModelOptions]="{standalone: true}" required type="email" [(ngModel)]="employeeDetails.email" placeholder="abc@d.com" class="form-control required">
+                </td>
+                <td>
+                  <input  [ngModelOptions]="{standalone: true}" required type="text" [(ngModel)]="employeeDetails.dateOfBirth"  [maxDate]="maxDate" bsDatepicker  
+                  [(bsValue)]="employeeDetails.dateOfBirth" value="{{ employeeDetails.dateOfBirth | date:'yyyy-MM-dd' }}" placeholder="yyyy-MM-dd" id="dateOfBirth" class="form-control required"> 
+                   <!--<dl-date-time-picker   startView="day"    maxView="year"    minView="minute"    minuteStep="5"    [(ngModel)]="employeeDetails.dob">
+                  </dl-date-time-picker> -->
+                </td>
+                <td>
+                  <input  [ngModelOptions]="{standalone: true}" required [(ngModel)]="employeeDetails.department" placeholder="department" class="form-control required">
+                </td>
+                <td>
+                  <input  [ngModelOptions]="{standalone: true}" required [(ngModel)]="employeeDetails.gender" placeholder="gender" class="form-control required">
+                </td>
+                <td>
+                  <input [ngModelOptions]="{standalone: true}"  disabled type="number" [(ngModel)]="employeeDetails.age" placeholder="age" class="form-control disabled">
+                </td>
+                <td>
+                  <button (click)="addEmployee()" class="btn btn-primary">Add Employee</button>
+                </td>
+                <td>
+                  <button (click)="updateEmployee();" class="btn btn-success">Update Employee</button>
+                </td>
+              </tr>
+              <tr *ngFor="let employee of allEmployees">
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.dateOfBirth}}</td>
+                  <td>{{employee.department}}</td>
+                  <td>{{employee.gender}}</td>
+                  <td>{{employee.age}}</td>
+                  <td>
+                    <a (click)="editEmployee(employee);" class="btn btn-info">Edit</a>
+                  </td>
+                  <td>
+                    <a (click)="deleteEmployee(employee._id);" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+      
+            </tbody>
+          </table>
+        
+    </div>
+  </div>
+</div>
+</form>
